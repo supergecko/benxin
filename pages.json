@@ -72,7 +72,7 @@
 			"iconPath": "static/icon/active.png",
 			"selectedIconPath": "static/icon/active2.png"
 		}, {
-			"pagePath": "pages/message/message",
+			"pagePath": "pages/login/login",
 			"text": "消息",
 			"iconPath": "static/icon/message.png",
 			"selectedIconPath": "static/icon/message2.png"
