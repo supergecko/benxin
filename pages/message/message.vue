@@ -1,5 +1,5 @@
 <template>
-	<view style="width: 100%;height: 100%;display: flex;">
+	<view style="width: 100%;height: 100%;display: flex;flex-direction: column;justify-content: space-between;align-items: center">
 		<!-- 头部背景 -->
 		<view class="headWarp">
 			<view class="headItem">
@@ -83,11 +83,67 @@
 		<!-- 头部背景 -->
 
 		<!-- 中间背景 -->
-		<view class="middleWarp"></view>
+		<!-- 		<view class="middleWarp" v-for="i in 1" :key="i"> -->
+		<view>
+			<!-- 最长的加*号的 12个-->
+			<view class="resultItemOneWarp" v-for="i in 13" :key="i">
+				<view class="resultItemOneTitle" :style="{'width':(testText.length>6?'500upx':'340upx')}">
+					{{testText}}
+				</view>
+				<view class="resultItemOneContent">
+					<view style="margin-top: 27upx;">
+						<view v-for="i in 5" :key="i" class="resultItemOneText1">
+							*服务奉献，呼朋引伴
+						</view>
+					</view>
+					<view class="resultItemOneText2">
+						是一个很忙碌、情绪化和处于许多大压力之下的人，非常实际、但 有些固执，所以有时会很难与人相处。在某种程度上，并不喜欢自己的
+						权威受到挑战，也不喜欢太先进的想法，太多的压力让自己无法集中精神与专心，小心会赶走贵人，因此，往往为了坚持己见而选择施压给身 边的人，让他们忠于自己的方式做事。所以，不论是观点、生活方式或
+						是自己的外表，都确实与他人不同，会导致婚姻波折，离婚率高。
+						是一个很忙碌、情绪化和处于许多大压力之下的人，非常实际、但 有些固执，所以有时会很难与人相处。在某种程度上，并不喜欢自己的
+						权威受到挑战，也不喜欢太先进的想法，太多的压力让自己无法集中精神与专心，小心会赶走贵人，因此，往往为了坚持己见而选择施压给身 边的人，让他们忠于自己的方式做事。所以，不论是观点、生活方式或
+						是自己的外表，都确实与他人不同，会导致婚姻波折，离婚率高。
+					</view>
+				</view>
+			</view>
+
+			<!-- 最短的3个 -->
+			<view class="resultItemOneWarp" v-for="i in 3" :key="i">
+				<view class="resultItemOneTitle" :style="{'width':(testText.length>6?'500upx':'340upx')}">
+					{{testText}}
+				</view>
+
+				<view class="resultItemTwoContent">
+					<view class="resultItemTwoText">
+						内心密码3的人，积极表达的行为来自于他们敏感的情绪，做事急促并冲动，就象他们的敏感而丰富的情绪，但往往不能坚持到底，缺乏耐性与恒心。原因是因为情绪的快速转换
+					</view>
+				</view>
+			</view>
+
+			<!-- 长的不加*号的 -->
+			<view class="resultItemOneWarp" v-for="i in 3" :key="i">
+				<view class="resultItemOneTitle" :style="{'width':(testText.length>6?'500upx':'340upx')}">
+					{{testText}}
+				</view>
+
+				<view class="resultItemTwoContent" style="background-image: url(../../static/result/itemBg.png);">
+					<view class="resultItemTwoText">
+						4号人在爱情里，寻求安全感，而爱情关系确实可以提供安全感，因此时数可以说是最需要爱情的一群人。他们太需要安全感，所以有时候并不仔细挑选对象。若在情感上或金钱上得到了安全感，他们便会与对方交往。时间一久，双方关系中的问题逐一显现，他们就开始觉得痛苦了。由于4号讨厌改变，于是他们会想办法至少让伴侣接受现状，承认问题，两人继续在一起，即使自己已经痛苦得不得了。如果他们挑选到的是适合自己的人，这会出现另外的问题：爱情需要变化，才能保新鲜趣味，但是4号的人偏好规律，让事情保持原状。对此，他们的伴侣常常抱怨，但是不会有用。渐渐的，不管是说出来的或是没有说出来的愤怒和厌烦感都会逐渐累积，使得双方的关系迅速冷却。除非努力改变，否则爱人最后会变成室友，爱意消失，但两人还在一起。4号一直要到无法再从伴侣身上获得信赖感或安全感的时候，两人的关系才会破裂，否则绝不轻言散伙。
+					</view>
+				</view>
+			</view>
+
+
+
+		</view>
+
+		<!-- 		</view> -->
 		<!-- 中间背景 -->
 
 		<!-- 底部背景 -->
-		<view class="bottomWarp"></view>
+		<!-- <view class="bottomWarp">
+			
+		</view> -->
 		<!-- 底部背景 -->
 	</view>
 </template>
@@ -97,6 +153,7 @@
 		data() {
 			return {
 				yearMouthDay: [], //存放年月日数组
+				testText: '家庭密码',
 				U: 0,
 				E: 0,
 				F: 0,
@@ -135,36 +192,168 @@
 				water: 0, //水
 				fire: 0, //火
 				soil: 0, //土
-				zxj:0,//主性格IJK
-				fxjy:0,//父系基因EFI
-				mxjy:0,//母系基因GHJ
-				qysmm:0,//潜意识密码(E+H+K)
-				smxx:0,//生命信息IKM
-				nxmm:0,//内心密码(I+J+K)
-				wxmm:0,//外心密码Q+N+T
-				dnsmxx:0 ,//对内生命信息IKM
-				dysmxx:0 ,//对外生命信息JKL
-				hsxg:0 ,//孩时性格 K
-				shzy:0 ,//适合职业 K
-				wxjk:0 ,//（在IJKLM 5个数中，1和6为金，2和7为水，3和8为火，4和9为木，5为土，五行中两个以上包括两个为多，缺的为缺，各1个的为正常） 注意！！！！
-				dxpygk:0 ,//当下朋友或顾客（20--40岁）OPQ
-				dxpygkysOne:0 ,//当下朋友或顾客的延伸一 EIO
-				dxpygkysTwo:0 ,//当下朋友或顾客的延伸二 FIP
-				enxs:0 ,//儿女和下属（40--60岁）LMN
-				wlwn:0 ,//未来或晚年（60岁以后）RST
-				wlwnOne:0 ,//未来或晚年的延伸一GJR
-				wlwnTwo:0 ,//未来或晚年的延伸二HJS
-				jtmm:0,//家庭密码：2000年以后出生者只一个：F+G 2000年以前出生者有两个：F+G;F+G+1  以上两个数字或三个数相加后所得变的是什么数） 注意！！！！ 判断this.CC 是否大于20 
-				aqtz:0 ,//爱情特征 K
-				shdx:0 ,//适合对象：本命K数+对象K数
-				liunian:0 //流年IJK
+				zxj: "281", //主性格IJK
+				fxjy: "393", //父系基因EFI
+				mxjy: "775", //母系基因GHJ
+				qysmm: "8", //潜意识密码(E+H+K)
+				nxmm: "7", //内心密码(I+J+K)
+				wxmm: "363", //外心密码Q+N+T  这里注意
+				dnsmxx: "415", //对内生命信息IKM
+				dwsmxx: "617", //对外生命信息JKL
+				hsxg: "5", //孩时性格 K
+				shzy: "9", //适合职业 K
+				wxjk: ["缺土", "水多"], //（在IJKLM 5个数中，1和6为金，2和7为水，3和8为火，4和9为木，5为土，五行中两个以上包括两个为多，缺的为缺，各1个的为正常） 注意！！！！
+				dxpygk: "393", //当下朋友或顾客（20--40岁）OPQ
+				dxpygkysOne: "347", //当下朋友或顾客的延伸一 EIO
+				dxpygkysTwo: "944", //当下朋友或顾客的延伸二 FIP
+				enxs: "551", //儿女和下属（40--60岁）LMN
+				wlwn: "363", //未来或晚年（60岁以后）RST 81条
+				wlwnOne: "371", //未来或晚年的延伸一GJR
+				wlwnTwo: "742", //未来或晚年的延伸二HJS
+				jtmm: "5", //家庭密码：2000年以后出生者只一个：F+G 2000年以前出生者有两个：F+G;F+G+1  以上两个数字或三个数相加后所得变的是什么数） 注意！！！！ 判断this.CC 是否大于20 
+				aqtz: "8", //爱情特征 K
+				shdx: "9", //适合对象：本命K数+对象K数
+				liunian: "562" //流年IJK
 			}
 		},
 		onLoad: function(option) {
 			console.log(option.id);
 			this.splitMethod(parseInt(option.id))
+			this._resulContent()
 		},
 		methods: {
+			//获取断语
+			_resulContent() {
+				// if (this.registered.mobile === '') {
+				// 	uni.showToast({
+				// 		icon: 'none',
+				// 		title: '请输入手机号'
+				// 	});
+				// 	return;
+				// }
+				uni.getNetworkType({
+					success: (res) => {
+						if (res.networkType == 'none') {
+							uni.showToast({
+								icon: 'none',
+								title: '当前网络不可用'
+							})
+						}
+					}
+				})
+				uni.showLoading({
+					title: '加载中'
+				});
+				const orderId = '' //订单ID
+				const aqtz = {
+					"code": this.aqtz
+				} //爱情特征
+				const dnsmxx = {
+					"code": this.dnsmxx
+				} //对内的生命信息
+				const dwsmxx = {
+					"code": this.dwsmxx
+				} //对外的生命信息
+				const enxs = {
+					"code": this.enxs
+				} //儿女和下属
+				const fxjy = {
+					"code": this.fxjy
+				} //父系基因
+				const hsxgtz = {
+					"code": this.hsxg
+				} //孩时性格特征
+				const jtmm = {
+					"code": this.jtmm
+				} //家庭密码
+				const ln = {
+					"code": this.liunian
+				} //流年
+				const mxjy = {
+					"code": this.mxjy
+				} //母系基因
+				const nxmm = {
+					"code": this.nxmm
+				} //内心密码
+				const pygk = {
+					"code": this.dxpygk
+				} //当下朋友或顾客
+				const pygkExtra1 = {
+					"code": this.dxpygkysOne
+				} //当下朋友或顾客延伸1
+				const pygkExtra2 = {
+					"code": this.dxpygkysTwo
+				} //当下朋友或顾客延伸2
+				const qysmm = {
+					"code": this.qysmm
+				} //潜意识密码
+				const shdx = {
+					"code": this.shdx
+				} //适合对象
+				const sszy = {
+					"code": this.shzy
+				} // 适合职业
+				const wlwn = {
+					"code": this.wlwn
+				} // 未来或晚年
+				const wlwnExtra1 = {
+					"code": this.wlwnOne
+				} //未来或晚年的延伸一
+				const wlwnExtra2 = {
+					"code": this.wlwnTwo
+				} //未来或晚年的延伸二
+				const wxjkCodeList = this.wxjk //五行健康
+				const wxmm = {
+					"code": this.wxmm
+				} //外心密码
+				const zxgtz = {
+					"code": this.zxj
+				} //主性格特征
+				let params = {
+					orderId,
+					aqtz,
+					dnsmxx,
+					dwsmxx,
+					enxs,
+					fxjy,
+					hsxgtz,
+					jtmm,
+					ln,
+					mxjy,
+					nxmm,
+					pygk,
+					pygkExtra1,
+					pygkExtra2,
+					qysmm,
+					shdx,
+					sszy,
+					wlwn,
+					wlwnExtra1,
+					wlwnExtra2,
+					wxjkCodeList,
+					wxmm,
+					zxgtz
+				}
+				this.$ajax.post({
+					url: this.$service.api_lists.resulContent,
+					data: params
+				}).then((res) => {
+					if (res.data.code == 1) {
+						//初始化信息
+						// uni.showToast({
+						// 	icon: 'none',
+						// 	title: '发送成功'
+						// })
+					}
+					uni.hideLoading()
+				}).catch((err) => {
+					uni.hideLoading()
+					// uni.showToast({
+					// 	title: err,
+					// 	duration: 2000
+					// });
+				})
+			},
 			//拆分年月日
 			splitMethod(number) {
 				// var number = 12354987,
@@ -249,6 +438,29 @@
 				this.V = this.threeNumberAdd(this.Q, this.N, this.T)
 				this.W = this.threeNumberAdd(this.I, this.J, this.K)
 				this.JudgeTheFive(this.K)
+				this.zxj = this.I + "" + this.J + "" + this.K
+				this.fxjy = this.E + "" + this.F + "" + this.I
+				this.mxjy = this.G + "" + this.H + "" + this.J
+				this.qysmm = this.U
+				this.nxmm = this.W
+				this.wxmm = this.Q + "" + this.N + "" + this.T
+				this.dnsmxx = this.I + "" + this.K + "" + this.M
+				this.dwsmxx = this.J + "" + this.K + "" + this.L
+				this.hsxg = this.K
+				this.shzy = this.K
+				this.wxjk = this.computeWxJk()
+				console.log(this.wxjk)
+				this.dxpygk = this.O + "" + this.P + "" + this.Q
+				this.dxpygkysOne = this.E + "" + this.I + "" + this.O
+				this.dxpygkysTwo = this.F + "" + this.I + "" + this.P
+				this.enxs = this.L + "" + this.M + "" + this.N
+				this.wlwn = this.R + "" + this.S + "" + this.T
+				this.wlwnOne = this.G + "" + this.J + "" + this.R
+				this.wlwnTwo = this.H + "" + this.J + "" + this.S
+				this.jtmm = this.computeJtMm() + ''
+				this.aqtz = this.K
+				this.shdx = this.K
+				this.liunian = this.I + "" + this.J + "" + this.K
 				this.yearMouthDay = []
 			},
 			//判断五行
@@ -399,12 +611,204 @@
 							this.soil++
 					}
 				}
+			},
+
+			//判断家庭密码
+			computeJtMm() {
+				var year = parseInt(this.CC + this.DD)
+				if (year >= 2000) {
+					var c = this.F + this.G
+					var dayS = []
+					if (c >= 10) {
+						var d = c.toString()
+						for (var i = 0, len = d.length; i < len; i += 1) {
+							dayS.push(+d.charAt(i));
+						}
+						var e = dayS[0] + dayS[1]
+						return e
+					} else {
+						return c
+					}
+				} else {
+					var a = this.F + this.G
+					var b = this.F + this.G + 1
+					var c = a + b
+					var dayS = []
+					if (c >= 10) {
+						var d = c.toString()
+						for (var i = 0, len = d.length; i < len; i += 1) {
+							dayS.push(+d.charAt(i));
+						}
+						var e = dayS[0] + dayS[1]
+						return e
+					} else {
+						return c
+					}
+				}
+			},
+			//判断五行健康
+			computeWxJk() {
+				var arr = [this.I, this.J, this.K, this.L, this.M]
+				var gold = 0 //金
+				var water = 0 //水
+				var fire = 0 //火
+				var wood = 0 //木
+				var soil = 0 //土
+				var wxjkArr = []
+				for (var j = 0, len = arr.length; j < len; j++) {
+					switch (arr[j]) {
+						case 1:
+							gold++
+							break;
+						case 6:
+							gold++
+							break;
+						case 2:
+							water++
+							break;
+						case 7:
+							water++
+							break;
+						case 3:
+							fire++
+							break;
+						case 8:
+							fire++
+							break;
+						case 4:
+							wood++
+							break;
+						case 9:
+							wood++
+							break;
+						default:
+							soil++
+					}
+				}
+				if (gold == 0) {
+					wxjkArr.push('缺金');
+				} else if (gold > 1) {
+					wxjkArr.push('多金');
+				} else {}
+				
+				if (water == 0) {
+					wxjkArr.push('缺水');
+				} else if (water > 1) {
+					wxjkArr.push('多水');
+				} else {}
+				
+				if (fire == 0) {
+					wxjkArr.push('缺火');
+				} else if (fire > 1) {
+					wxjkArr.push('多火');
+				} else {}
+				
+				if (wood == 0) {
+					wxjkArr.push('缺木');
+				} else if (wood > 1) {
+					wxjkArr.push('多木');
+				} else {}
+				
+				if (soil == 0) {
+					wxjkArr.push('缺土');
+				} else if (soil > 1) {
+					wxjkArr.push('多土');
+				} else {}
+				
+				return wxjkArr
 			}
 		}
 	}
 </script>
 
 <style>
+	.resultItemTwoContent {
+		background-image: url(../../static/result/smallkuan.png);
+		background-size: 100% 100%;
+		width: 670upx;
+		min-height: 240upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.resultItemTwoText {
+		text-indent: 2em;
+		text-align: justify;
+		font-size: 30upx;
+		font-family: PingFang SC;
+		font-weight: bold;
+		color: #331C01;
+		width: 622upx;
+		margin-bottom: 46upx;
+		margin-top: 46upx;
+	}
+
+	.resultItemOneText1 {
+		font-size: 30upx;
+		font-family: Source Han Serif SC;
+		font-weight: bold;
+		color: #2D1800;
+		margin-left: 28upx;
+		margin-top: 6upx;
+	}
+
+	.resultItemOneText2 {
+		font-size: 30upx;
+		font-family: PingFang SC;
+		font-weight: bold;
+		color: #331C01;
+		text-indent: 2em;
+		width: 622upx;
+		text-align: justify;
+		margin: 0 auto;
+		margin-top: 46upx;
+		margin-bottom: 46upx;
+	}
+
+	.bottomWarp {
+		background-image: url(../../static/result/bgBottom.png);
+		background-size: 100% 100%;
+		width: 750upx;
+		height: 1580upx;
+	}
+
+	.middleWarp {
+		background-image: url(../../static/result/bgMid.png);
+		background-size: 100% 100%;
+		width: 750upx;
+		height: 3276upx;
+	}
+
+	.resultItemOneWarp {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center
+	}
+
+	.resultItemOneTitle {
+		background-image: url(../../static/result/biaoti.png);
+		background-size: 100% 100%;
+		/* max-width: 600upx; */
+		height: 80upx;
+		text-align: center;
+		line-height: 76upx;
+		font-size: 32upx;
+		font-family: Source Han Serif SC;
+		font-weight: bold;
+		color: #331C01;
+		margin-top: 40upx;
+		margin-bottom: 27upx;
+	}
+
+	.resultItemOneContent {
+		background-image: url(../../static/result/itemBg.png);
+		background-size: 100% 100%;
+		width: 670upx;
+		min-height: 900upx;
+	}
+
 	.bigText {
 		font-size: 36upx;
 		font-family: Source Han Serif SC;
