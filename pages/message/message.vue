@@ -86,23 +86,18 @@
 		<!-- 		<view class="middleWarp" v-for="i in 1" :key="i"> -->
 		<view>
 			<!-- 最长的加*号的 12个-->
-			<view class="resultItemOneWarp" v-for="i in 13" :key="i">
-				<view class="resultItemOneTitle" :style="{'width':(testText.length>6?'500upx':'340upx')}">
-					{{testText}}
+			<view class="resultItemOneWarp" v-for="(item,i) in longContentArr" :key="i">
+				<view class="resultItemOneTitle" :style="{'width':(item.code.length>6?'500upx':'340upx')}" v-if="item">
+					{{item.code}}
 				</view>
 				<view class="resultItemOneContent">
 					<view style="margin-top: 27upx;">
-						<view v-for="i in 5" :key="i" class="resultItemOneText1">
-							*服务奉献，呼朋引伴
+						<view class="resultItemOneText1">
+						     <rich-text :nodes="item.judgment.replace(/\n/g, '<br/>')" bindtap="tap"></rich-text>
 						</view>
 					</view>
 					<view class="resultItemOneText2">
-						是一个很忙碌、情绪化和处于许多大压力之下的人，非常实际、但 有些固执，所以有时会很难与人相处。在某种程度上，并不喜欢自己的
-						权威受到挑战，也不喜欢太先进的想法，太多的压力让自己无法集中精神与专心，小心会赶走贵人，因此，往往为了坚持己见而选择施压给身 边的人，让他们忠于自己的方式做事。所以，不论是观点、生活方式或
-						是自己的外表，都确实与他人不同，会导致婚姻波折，离婚率高。
-						是一个很忙碌、情绪化和处于许多大压力之下的人，非常实际、但 有些固执，所以有时会很难与人相处。在某种程度上，并不喜欢自己的
-						权威受到挑战，也不喜欢太先进的想法，太多的压力让自己无法集中精神与专心，小心会赶走贵人，因此，往往为了坚持己见而选择施压给身 边的人，让他们忠于自己的方式做事。所以，不论是观点、生活方式或
-						是自己的外表，都确实与他人不同，会导致婚姻波折，离婚率高。
+						{{item.description}}
 					</view>
 				</view>
 			</view>
@@ -154,6 +149,9 @@
 			return {
 				yearMouthDay: [], //存放年月日数组
 				testText: '家庭密码',
+				longContentArr:{},//长内容带*数组
+				smallContentArr:[],//短内容数组
+				midContentArr:[],//中内容数组
 				U: 0,
 				E: 0,
 				F: 0,
@@ -338,12 +336,38 @@
 					url: this.$service.api_lists.resulContent,
 					data: params
 				}).then((res) => {
-					if (res.data.code == 1) {
+					if (res.data.code == 200) {
 						//初始化信息
-						// uni.showToast({
-						// 	icon: 'none',
-						// 	title: '发送成功'
-						// })
+						// this.longContentArr.push(res.data.data.zxgtz)//主性格
+						// this.longContentArr.push(res.data.data.fxjy)//父系基因
+						// this.longContentArr.push(res.data.data.mxjy)//母系基因
+						// this.longContentArr.push(res.data.data.dnsmxx)//对内的生命信息
+						// this.longContentArr.push(res.data.data.dwsmxx)//对外的生命信息
+						// this.longContentArr.push(res.data.data.pygk)//当下朋友或顾客
+						// this.longContentArr.push(res.data.data.pygkExtra1)//当下朋友或顾客延伸1
+						// this.longContentArr.push(res.data.data.pygkExtra2)//当下朋友或顾客延伸2
+						// this.longContentArr.push(res.data.data.enxs)//儿女和下属
+						// this.longContentArr.push(res.data.data.wlwn)//未来或晚年
+						// this.longContentArr.push(res.data.data.wlwnExtra1)//未来或晚年的延伸一
+						// this.longContentArr.push(res.data.data.wlwnExtra2)//未来或晚年的延伸二
+						// this.longContentArr.push(res.data.data.ln)//流年
+						this.longContentArr = {
+							...res.data.data.zxgtz,//主性格
+							...res.data.data.fxjy,//父系基因
+							...res.data.data.mxjy,//母系基因
+							...res.data.data.dnsmxx,//对内的生命信息
+							...res.data.data.dwsmxx,//对外的生命信息
+							...res.data.data.pygk,//当下朋友或顾客
+							...res.data.data.pygkExtra1,//当下朋友或顾客延伸1
+							...res.data.data.pygkExtra2,//当下朋友或顾客延伸2
+							...res.data.data.enxs,//儿女和下属
+							...res.data.data.wlwn,//未来或晚年
+							...res.data.data.wlwnExtra1,//未来或晚年的延伸一
+							...res.data.data.wlwnExtra2,//未来或晚年的延伸二
+							...res.data.data.ln//流年
+						}
+						// this.smallContentArr.push()//短内容数组
+						// this.midContentArr.push()//中内容数组
 					}
 					uni.hideLoading()
 				}).catch((err) => {
@@ -762,7 +786,7 @@
 		width: 622upx;
 		text-align: justify;
 		margin: 0 auto;
-		margin-top: 46upx;
+		margin-top: 16upx;
 		margin-bottom: 46upx;
 	}
 
