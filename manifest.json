@@ -10,7 +10,7 @@
         "usingComponents" : true,
         /* 模块配置 */
         "modules" : {
-            "Share" : {}
+            "OAuth" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -32,6 +32,7 @@
                     "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.REQUEST_INSTALL_PACKAGES\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
@@ -51,7 +52,8 @@
                     "qq" : {
                         "appid" : ""
                     }
-                }
+                },
+                "oauth" : {}
             },
             "icons" : {
                 "android" : {

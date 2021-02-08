@@ -75,7 +75,8 @@
 				newUserName: '', //用户名字
 				userData: '',//日期
 				gender: '' ,//性别
-				
+				lunarDate:'',//农历(阴历)
+				solarDate:'',//公历(阳历)
 				date: '2019-01-22',//日期
 				time: '13-26',//时间
 				isHourShow: false,//是否显示时辰（小时）
@@ -137,7 +138,7 @@
 					return;
 				}
 				uni.navigateTo({
-					url: '../message/message?id=' + this.userData + '&userName=' + this.newUserName + '&gender=' + this.gender
+					url: '../message/message?id=' + this.userData + '&userName=' + this.newUserName + '&gender=' + this.gender + '&lunarDate=' +this.lunarDate+ '&solarDate=' +this.solarDate
 				});
 			},
 			//单选框（获取性别）		
@@ -170,8 +171,9 @@
 			},
 			//点击了确认后的相关操作，并再次点击确认时间后的返回，这里可以写自己的操作了
 			confirmDialog: function(e) {
-				console.log(e.date);
-				this.detail = e.date;
+				this.lunarDate = e.lunarDate
+				this.solarDate = e.solarDate
+				this.detail = e.solarDate
 				var a = e.date
 				var b = a.replace(/[^\d]/g, '')
 				this.userData = b

@@ -24,6 +24,13 @@
 			// })
 		},
 		onShow: function() {
+			plus.runtime.getProperty(plus.runtime.appid,(wgtinfo)=>{
+			
+			console.log(JSON.stringify(wgtinfo));
+			
+			console.log(wgtinfo.version);//应用版本号
+			
+			});
 			console.log('App Show');
 		},
 		onHide: function() {

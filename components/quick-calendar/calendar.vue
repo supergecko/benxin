@@ -33,8 +33,10 @@
 				<view class="pickerHeaderTitle" style="text-align: center; color: #B28B65;">确认时间</view>
 				<view style="background: #FFFFFF; padding: 20upx; text-align: center;">
 					<view class="confirmSubTitle">请确认输入的时间是否正确</view>
-					<view class="solar" v-if="lunar=='solar'"><text>公(阳)历：</text>{{solarDate}}</view>
-					<view class="lunar" v-else><text>农(阴)历：</text>{{lunarDate}}</view>
+					<view>
+						<view class="solar" ><text>公(阳)历：</text>{{solarDate}}</view>
+						<view class="lunar" ><text>农(阴)历：</text>{{lunarDate}}</view>
+					</view>
 					<view class="buttons">
 						<view class="blak" @click.stop="blak">返回修改</view>
 						<view class="confirm" @click.stop="confirmDialog">确认正确</view>
@@ -181,9 +183,17 @@
 				if(this.lunar === 'solar') {
 					this.solarDate = this.year + '年' + this.month + '月' + this.day + '日';
 					if(this.month<10){
-						this.returnDate = this.year + '-' + '0'+this.month + '-' + this.day;
+						if(this.day<10){
+							this.returnDate = this.year + '-' +'0'+ this.month + '-' +'0'+ this.day;
+						} else {
+							this.returnDate = this.year + '-' +'0'+ this.month + '-' + this.day;
+						}
 					} else {
-						this.returnDate = this.year + '-' + this.month + '-' + this.day;
+						if(this.day<10){
+							this.returnDate = this.year + '-' + this.month + '-' +'0'+ this.day;
+						} else {
+							this.returnDate = this.year + '-' + this.month + '-' + this.day;
+						}
 					}
 					
 					if(this.isHourShow === true) this.solarDate += this.hours[this.hour];
@@ -199,9 +209,17 @@
 					let toValues = render.submit(this.lunar, this.year, this.month, this.day, this.hour, this.min, this.isHourShow, this.isMinShow);
 					this.solarDate = toValues.text;
 					if(toValues.month<10){
-						this.returnDate = toValues.year + '-' + '0' + toValues.month + '-' + toValues.day;
+						if(toValues.day<10){
+							this.returnDate = toValues.year + '-' + '0' + toValues.month + '-' + '0' + toValues.day;
+						} else {
+							this.returnDate = toValues.year + '-' + '0' + toValues.month + '-' + toValues.day;
+						}
 					} else {
-						this.returnDate = toValues.year + '-' + toValues.month + '-' + toValues.day;
+						if(toValues.day<10){
+							this.returnDate = toValues.year + '-' + toValues.month + '-' + '0' + toValues.day;
+						} else {
+							this.returnDate = toValues.year + '-' + toValues.month + '-' + toValues.day;
+						}
 					}
 					this.returnTime = toValues.hour + '-' + toValues.min;
 				}
@@ -215,7 +233,7 @@
 				this.$emit('closeDialog');
 			},
 			confirmDialog: function() {
-				this.$emit('confirmDialog', {date:this.returnDate, time:this.returnTime});
+				this.$emit('confirmDialog', {date:this.returnDate, time:this.returnTime,lunarDate:this.lunarDate,solarDate:this.solarDate});
 			}
 		}
 	}
